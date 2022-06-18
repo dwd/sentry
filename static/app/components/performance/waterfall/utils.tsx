@@ -231,12 +231,16 @@ export const pickBarColor = (input: string | undefined): string => {
   // We pick the color for span bars using the first three letters of the op name.
   // That way colors stay consistent between transactions.
 
-  if (!input || input.length < 3) {
-    return CHART_PALETTE[17][4];
+  if (!input) {
+    return barColors['default'];
   }
 
   if (barColors[input]) {
     return barColors[input];
+  }
+
+  if (input.length < 3) {
+    return barColors['default'];
   }
 
   const letterIndex1 = getLetterIndex(input.slice(0, 1));
